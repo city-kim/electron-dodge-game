@@ -1,0 +1,65 @@
+{
+  "name": "electron-dodge-game",
+  "version": "1.0.0",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "dev": "concurrently --kill-others \"next dev\" \"wait-on http://localhost:3000 && electron .\"",
+    "build": "next build",
+    "start": "next dev & electron .",
+    "pack": "next build && electron-builder --dir",
+    "dist": "next build && electron-builder",
+    "dist:mac": "next build && electron-builder --mac",
+    "dist:win": "next build && electron-builder --win",
+    "dist:all": "next build && electron-builder --mac --win",
+    "lint": "eslint",
+    "format": "prettier --write \"**/*.{ts,tsx}\"",
+    "prepare": "if [ \"$HUSKY\" != \"0\" ]; then husky; fi"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --config ./.lint-staged.eslint.config.mjs",
+    "*.{json,md,css,scss,html,yml,yaml}": "prettier --write"
+  },
+  "build": {
+    "appId": "com.example.electron-dodge-game",
+    "productName": "Electron Dodge Game",
+    "files": [
+      "main.js",
+      "preload.js",
+      "out/**/*"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "portable"
+    }
+  },
+  "dependencies": {
+    "concurrently": "^9.2.1",
+    "next": "^16.2.1",
+    "phaser": "^3.90.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "tailwindcss": "^4.2.2",
+    "wait-on": "^9.0.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.2",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/node": "^25.5.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "electron": "^41.0.3",
+    "electron-builder": "^26.8.1",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.6",
+    "prettier": "^3.6.2",
+    "typescript": "^6.0.2"
+  }
+}

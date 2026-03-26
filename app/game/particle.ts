@@ -1,5 +1,5 @@
 import * as Phaser from 'phaser'
-import { GAME_CONFIG } from '@/app/config/gameConfig'
+import { GAME_CONFIG } from '@/app/config/game-config'
 
 export interface ParticleTypeConfig {
   key: string

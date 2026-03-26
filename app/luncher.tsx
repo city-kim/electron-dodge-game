@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react'
 import * as Phaser from 'phaser'
 import { GameAPI } from '@/app/types/game'
-import { GAME_CONFIG } from '@/app/config/gameConfig'
+import { GAME_CONFIG } from '@/app/config/game-config'
 import { GameScene } from '@/app/game/game-scene'
 
 export default function PhaserRandomMovePage() {

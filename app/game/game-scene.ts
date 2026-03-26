@@ -1,6 +1,6 @@
 import * as Phaser from 'phaser'
 import { GameAPI } from '@/app/types/game'
-import { GAME_CONFIG } from '@/app/config/gameConfig'
+import { GAME_CONFIG } from '@/app/config/game-config'
 import { PlayerManager } from '@/app/game/player'
 import { ParticleManager, PARTICLE_TYPES } from '@/app/game/particle'
 
@@ -96,7 +96,7 @@ export class GameScene extends Phaser.Scene {
 
   private collectEgg() {
     this.eggCount++
-    this.playerManager?.addSpeed(1)
+    this.playerManager?.addSpeed(2)
 
     const pos = this.randomEggPosition()
     this.egg?.setPosition(pos.x, pos.y)

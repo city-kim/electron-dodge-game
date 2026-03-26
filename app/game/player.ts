@@ -7,7 +7,7 @@
 
 import * as Phaser from 'phaser'
 import { PlayerState } from '@/app/types/game'
-import { GAME_CONFIG } from '@/app/config/gameConfig'
+import { GAME_CONFIG } from '@/app/config/game-config'
 
 export class PlayerManager {
   /** 플레이어 스프라이트 객체 (물리 엔진 적용) */
@@ -170,19 +170,6 @@ export class PlayerManager {
   }
 
   /**
-   * 자동 이동을 위한 새로운 목표 지점을 랜덤하게 선택합니다
-   * - 이동 가능한 영역 내에서 랜덤한 좌표를 선택합니다
-   * - 영역 경계에서 8px 여백을 두어 경계 근처를 피합니다
-   */
-  private pickNewTarget() {
-    const { zone } = GAME_CONFIG
-    const margin = 8 // 영역 경계에서의 여백
-    const tx = Phaser.Math.Between(zone.x + margin, zone.x + zone.w - margin)
-    const ty = Phaser.Math.Between(zone.y + margin, zone.y + zone.h - margin)
-    this.state.target = { x: tx, y: ty } // 새로운 목표 지점 설정
-  }
-
-  /**
    * 플레이어를 지정된 영역 내로 제한합니다
    * - 플레이어가 이동 가능한 영역을 벗어나지 않도록 좌표를 제한합니다
    * @param nx 새로운 X 좌표
@@ -249,19 +236,8 @@ export class PlayerManager {
   }
 
   /**
-   * 자동 이동 모드를 설정합니다
-   * @param enabled 자동 이동 모드 활성화 여부
-   */
-  setAutoMove(enabled: boolean) {
-    this.state.target = null // 기존 목표 지점 초기화
-    this.state.idle = 0 // 대기 시간 초기화
-    if (enabled) this.pickNewTarget() // 자동 이동이 활성화되면 새 목표 지점 설정
-  }
-
-  /**
    * 모든 액션을 정지합니다
    * - 현재 상태를 저장하여 나중에 복원할 수 있도록 합니다
-   * - 자동 이동, 수동 이동, 애니메이션을 모두 정지합니다
    */
   stop() {
     // 모든 액션 정지
@@ -273,9 +249,6 @@ export class PlayerManager {
 
   /**
    * 모든 액션을 재개합니다
-   * - 이전에 저장된 상태를 복원합니다
-   * - 자동 이동이 활성화되어 있었다면 그 상태로 복원됩니다
-   * - 플레이어 애니메이션도 이전 방향으로 재개됩니다
    */
   play() {
     // 플레이어 애니메이션 재개

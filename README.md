@@ -46,7 +46,7 @@ pnpm dist:all
 
 ```
 app/
-├── config/gameConfig.ts   # 게임 설정값 (화면 크기, 속도, 히트박스 등)
+├── config/game-config.ts   # 게임 설정값 (화면 크기, 속도, 히트박스 등)
 ├── game/
 │   ├── game-scene.ts      # 메인 게임 씬 (상태 관리, UI, 게임 루프)
 │   ├── particle.ts        # 장애물 매니저 (지뢰/검/도끼 스폰 및 이동)
@@ -60,3 +60,21 @@ main.js                    # Electron 메인 프로세스
 preload.js                 # Electron preload
 public/                    # 스프라이트, 장애물 이미지, 알 이미지
 ```
+
+dev 모드 실행시
+
+```
+throw new Error('Electron failed to install correctly, please delete node_modules/electron and try installing again');
+```
+
+위와같은 오류가 발생한다면
+
+```
+node node_modules/electron/install.js
+```
+
+이 명령어를 실행하면 해결됨
+
+https://github.com/electron/electron/issues/20731
+
+TODO: mac은 빌드 후 실행이 잘 되는데 window는 안되는문제점 해결해야함

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "concurrently --kill-others \"next dev\" \"wait-on http://localhost:3000 && electron .\"",
     "build": "next build",
+    "build:web": "next build",
     "start": "next dev & electron .",
     "pack": "next build && electron-builder --dir",
     "dist": "next build && electron-builder",
